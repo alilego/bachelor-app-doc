@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+<div class="container bgc-body">
+    <div class="row">
+        <h1 style="text-align: center">Imi actualizez datele</h1>
+        <div style="width: 40%; margin: 25px auto;">
+            <form action="/user/profile?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="user[firstname]" value="<%= user.firstname %>" placeholder="prenume">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="user[lastname]" value="<%= user.lastname %>" placeholder="nume">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="user[email]" value="<%= user.email %>" placeholder="email">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="user[phone]" value="<%= user.phone %>" placeholder="telefon">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="user[country]" value="<%= user.country %>" placeholder="tara">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="user[city]" value="<%= user.city %>" placeholder="oras">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Actualizez!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

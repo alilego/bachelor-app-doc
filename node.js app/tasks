@@ -1,0 +1,16 @@
+v users management: 
+    v sign up, login, logout
+    v edit, preferences, admin
+v upload measurement
+    v parse&store in DB uploaded measurement
+v show map
+    v show generic data
+    v request data
+    v show advices & recommendations
+v add footer
+    v contact form https://www.w3schools.com/bootstrap/bootstrap_theme_band.asp
+    v mission
+v add articles (just basic html for add)
+    v add, edit, show all
+v index DB measurements by long & lat
+    v db.measurements.createIndex( { long: 1, lat: 1 } )

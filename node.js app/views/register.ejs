@@ -1,0 +1,110 @@
+<% include ./partials/header %> 
+
+<div class="container">
+    <div class="row">
+        <div style="width: 40%; margin: 25px auto;">
+            <h1>Cont nou</h1>
+            <form id="form" name="form" action="/register" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" id="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" id="password" placeholder="parola" onkeyup='check();'>
+                </div>    
+                <div class="form-group">
+                    <input class="form-control" type="password" name="passwordConf" id="passwordConf" placeholder="confirmare parola" onkeyup='check();'>
+                </div>
+                <div class="form-group">
+                    <button id="submit" class="btn btn-lg btn-primary btn-block">Inregistrare!</button>
+                </div>   
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    
+    $(document).ready(function(){
+        var $submitBtn = $("#form input[type='submit']");
+        var $username = $("#username");
+        var $passwordBox = $("#password");
+        var $confirmBox = $("#passwordConf");
+        var $errorMsg =  $('<span id="error_msg" style="color: red;"> Parolele nu se potrivesc!</span>');
+        var $errorUsr =  $('<span id="error_usr" style="color: red;"> Nu ati introdus un username!</span>');
+
+        // This is incase the user hits refresh - some browsers will maintain the disabled state of the button.
+        $submitBtn.attr("disabled", "disabled");
+
+        function checkMatchingPasswords(){
+            if($confirmBox.val() != "" && $passwordBox.val != ""){
+                if( $confirmBox.val() != $passwordBox.val() ){
+                    $submitBtn.attr("disabled", "disabled");
+                    $errorMsg.insertAfter($confirmBox);
+                }
+            }
+        }
+        
+        function checkUsernameNonEmpty(){
+            if($username.val() == "" && $passwordBox.val != ""){
+                $submitBtn.attr("disabled", "disabled");
+                $errorUsr.insertAfter($username);
+            }
+        }
+
+        function resetPasswordError(){
+            $submitBtn.removeAttr("disabled");
+            var $errorCont = $("#error_msg");
+            if($errorCont.length > 0){
+                $errorCont.remove();
+            }
+            checkUsernameNonEmpty();
+        }
+        
+        function resetUsernameError(){
+            $submitBtn.removeAttr("disabled");
+            var $errorCont = $("#error_usr");
+            if($errorCont.length > 0){
+                $errorCont.remove();
+            }  
+            checkMatchingPasswords();
+        }
+        
+        $("#username")
+            .on("keydown", function(e){
+                /* only check when the tab or enter keys are pressed
+                 * to prevent the method from being called needlessly  */
+                if(e.keyCode == 13 || e.keyCode == 9) {
+                    checkUsernameNonEmpty();
+                }
+            })
+            .on("blur", function(){                    
+                // also check when the element looses focus (clicks somewhere else)
+                checkUsernameNonEmpty();
+            })
+            .on("focus", function(){
+                // reset the error message when they go to make a change
+                resetUsernameError();
+            })
+
+        $("#passwordConf, #password")
+            .on("keydown", function(e){
+                /* only check when the tab or enter keys are pressed
+                 * to prevent the method from being called needlessly  */
+                if(e.keyCode == 13 || e.keyCode == 9) {
+                    checkMatchingPasswords();
+                }
+            })
+            .on("blur", function(){                    
+                // also check when the element looses focus (clicks somewhere else)
+                checkMatchingPasswords();
+            })
+            .on("focus", function(){
+                // reset the error message when they go to make a change
+                resetPasswordError();
+                checkUsernameNonEmpty();
+            })
+
+    });
+    
+</script>
+
+<% include ./partials/footer %> 

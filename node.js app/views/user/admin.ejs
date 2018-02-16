@@ -1,0 +1,81 @@
+<% include ../partials/header %>
+<div class="container bgc-body">
+    <div class="row">
+        <h1 style="text-align: center">Caut utilizator</h1>
+        <div style="width: 25%; margin: 25px auto;">
+            <form action="/user/admin?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Numele utilizatorului ale carui permisiuni sunt modificate">
+                        <input class="form-control" type="text" id="username" name="user[username]" placeholder="username">
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label data-toggle="tooltip" data-placement="right" title="Va avea optiunea de a incarca masuratori">
+                        <input type="checkbox" name="user[isContributor]">Drepturi incarcare masuratori
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label data-toggle="tooltip" data-placement="right" title="Va avea optiunea de a adauga si edita articole">
+                        <input type="checkbox" name="user[isEditor]">Drepturi adaugare articole
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label data-toggle="tooltip" data-placement="right" title="Va putea aproba masuratori si articole. Acestea vor fi disponibile pe site doar dupa aprobare">
+                        <input type="checkbox" name="user[isApprover]">Drepturi aprobare masuratori si articole
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label data-toggle="tooltip" data-placement="right" title="Permite modificarea permisiunilor utilizatorilor">
+                        <input type="checkbox" name="user[isAdmin]">Drepturi de administrare
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button id="submit" class="btn btn-lg btn-primary btn-block">Modific!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(document).ready(function(){
+        var $submitBtn = $("#submit");
+        var $username = $("#username");
+        var $errorUsr =  $('<span id="error_usr" style="color: red;"> Nu ati introdus un username!</span>');
+        
+        // This is incase the user hits refresh - some browsers will maintain the disabled state of the button.
+        //$submitBtn.attr("disabled", "disabled");
+
+        function checkFieldsFilled(){
+            if($username.val().trim() == ""){
+                $errorUsr.insertAfter($username);
+                $submitBtn.attr("disabled", "disabled");
+            } else {
+                var $errorCont = $("#error_usr");
+                if($errorCont.length > 0){
+                    $errorCont.remove();
+                }
+                $submitBtn.removeAttr("disabled");
+            }
+        }
+            
+        $("#submit")
+            .on("mouseover", function(){
+                checkFieldsFilled();
+            })
+            
+        $("#username")
+            .on("blur", function(){      // check when the element looses focus (clicks somewhere else)
+                checkFieldsFilled();
+            })
+
+    });
+    
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    
+</script>
+
+<% include ../partials/footer %>

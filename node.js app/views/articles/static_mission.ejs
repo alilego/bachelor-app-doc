@@ -1,0 +1,64 @@
+<% include ../partials/header %> 
+
+<div class="container border-shadow">
+    <div class="jumbotron border-shadow">
+        <h1>Misiune</h1>
+        <p>Analiza. Informare. Prevenire</p> 
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Proiectul a pornit in urma analizei <a href="http://aqicn.org/city/romania/municipiul-bucuresti/titan/str.-rotunda/" target="_blank">datelor ANPM</a> in privinta poluarii in Romania.</p> 
+            <p>In noiembrie 2017, ultimele date inregistrate - cu circa 4 luni inainte - aratau ca in Bucuresti 
+              calitatea aerului era comparabila daca nu mai buna ca cea de la munte. 
+              Aceste date erau suspecte, mai cu seama ca valorile din alte orase europene aratau foarte diferit 
+              (daca in Bucuresti datele indicau maxim 19/999, in Istanbul indicau si 999/999).</p>
+              <p>Mai mult, majoritatea senzorilor de pe teritoriul Romaniei erau dezafectati (a se vedea imaginile de mai jos).</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="thumbnail">
+                <a href="/images/aqicn.org-Bucuresti.png">
+                    <img src="/images/aqicn.org-Bucuresti.png" alt="AQICN Bucuresti" style="width:100%">
+                </a>
+            </div>
+            <p>Pe langa asta, desi existau discutii in spatiul public despre poluare, pericolul reprezentat de aceasta si propuneri de taxare pentru prevenirea ei, nu am gasit informatii concludente.</p>
+            <p>Astfel, profitand de existenta senzorilor ieftini de pe piata am creat un prototip mobil pentru masurarea calitatii aerului. Am facut masuratori si rezultatele se vad pe harta de pe pagina principala.</p>
+            <p>Mai multe informatii despre cum ne afecteaza poluarea si cum o putem preveni gasiti in articolele acestui site.</p>
+        </div>
+        <div class="col-sm-6">
+            <div class="thumbnail">
+                <a href="/images/aqicn.org-Romania.png">
+                    <img src="/images/aqicn.org-Romania.png" alt="AQICN Romania" style="width:100%">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Mai departe, ne propunem producerea in masa a unor dispozitive mobile pentru masurarea calitatii aerului. 
+            In functie de modalitatea de finantare, dispozitivele vor fi disponibile spre vanzare sau oferite gratuit.</p>
+            <p>Utilizatorii vor putea analiza statistici si vor putea primi sugestii privind diverse activitati folosind o aplicatie smartphone.
+            In acelasi timp, datele vor fi agregate pe site, pentru o analiza precisa si pentru identificarea pericolelor si a masurilor de prevenire</p>
+        </div>
+    </div>
+    <div>
+        <div class="col-sm-12">
+            <p>
+                Mai multe informatii despre calitatea aerului si cum ne putem proteja:
+                <a href="https://www3.epa.gov/airnow/aqi_brochure_02_14.pdf">Brosura AQI</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+  
+$(document).ready(function(){
+   $("#footerNavbar").removeClass("navbar-fixed-bottom");
+   $("#footerNavbar").addClass("navbar-bottom");
+});
+  
+</script>
+    
+<% include ../partials/footer %>

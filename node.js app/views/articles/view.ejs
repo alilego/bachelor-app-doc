@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+<div class="container thumbnail">
+    <div class="row" style="width: 80%; margin: 25px auto;">
+        <h4 align="center"><a><%=article.title%></a></h4>
+        <div class="col-md-8 col-sm-8">
+            <div class="caption-full">
+                <p></p>
+                <p><%= article.description %></p>
+                <p>
+                    <em>Autor: <%= article.author.username %></em>
+                </p>
+                <% if(currentUser && article.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-xs btn-warning" href="/articles/<%= article._id %>/edit">Editez</a>
+                <% }%>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="thumbnail"><img class="img-responsive" src="<%= article.imageCover %>"></div>
+        </div>
+    </div>
+    <div class="row" style="width: 80%; margin: 25px auto;">
+        <div class="col-md-12">
+            <div id="articleContent">
+                  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function(){
+        $("#footerNavbar").removeClass("navbar-fixed-bottom");
+        $("#footerNavbar").addClass("navbar-bottom");
+       
+        var articleHtmlContent = "<%=article.htmlContent%>";
+       
+        parser=new DOMParser();
+        htmlDoc=parser.parseFromString(articleHtmlContent, "text/html");
+       
+        $("#articleContent").html($(htmlDoc.body.innerText));
+    });
+
+</script>
+
+<% include ../partials/footer %>

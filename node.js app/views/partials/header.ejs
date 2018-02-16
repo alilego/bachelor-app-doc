@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>respir.info</title>
+        
+        <script src="https://use.fontawesome.com/8ae345b176.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="/stylesheets/map.css">
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="/map">Respir?</a>
+            </div>
+            <% if(currentUser){ %>
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sunt <strong><%= currentUser.username %></strong></a></li>
+                </ul>
+            <% } %>
+            <div class="collapse navbar-collapse" id="topNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/map"><span class="glyphicon glyphicon-map-marker"></span> Harta</a></li>
+                    <li><a href="/articles"><span class="glyphicon glyphicon-list-alt"></span> Articole</a></li>
+                    <% if(!currentUser){ %>
+                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Cont nou</a></li>
+                    <% } else { %>
+                        <li class="dropdown">
+                        <% if(currentUser.isContributor || currentUser.isEditor || currentUser.isApprover){ %>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-share"></span> Actiuni
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <% if(currentUser.isEditor){ %>
+                                <li><a href="/articles/new"><span class="glyphicon glyphicon-pencil"></span> Adaug articol</a></li>
+                            <% } %>    
+                            <% if(currentUser.isContributor){ %>
+                                <li><a href="/action/measurements/add"><span class="glyphicon glyphicon-level-up"></span> Adaug masuratori</a></li>
+                            <% } %> 
+                            <% if(currentUser.isApprover){ %>
+                                <!--li><a href="/user/approve">Aprobari</a></li-->
+                            <% } %>
+                            </ul>
+                        <% } %>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-wrench"></span> Setari
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/user/profile"><span class="glyphicon glyphicon-queen"></span> Profil</a></li>
+                                <li><a href="/user/preferences"><span class="glyphicon glyphicon-check"></span> Preferinte</a></li>
+                            <% if(currentUser.isAdmin){ %>
+                                <li><a href="/user/admin"><span class="glyphicon glyphicon-eye-close"></span> Administrare</a></li>
+                            <% } %>    
+                            </ul>
+                        </li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="border-shadow alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="border-shadow alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+    
+    
+    
+    
+    
+    
+    

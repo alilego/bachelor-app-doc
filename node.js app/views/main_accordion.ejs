@@ -1,0 +1,141 @@
+<div class="well border-shadow">
+  <p class="lead">Cum citim harta?</p>  
+  <p>Fiecare portiune colorata reprezinta media valorilor 
+  <a href="#" data-toggle="popover" data-trigger="focus" title="Ce fel de masuratori?" data-content="In aer sunt prezente diferite concentratii de gaze. Senzorii folositi sunt sensibili la o varietate de gaze: oxizi de azot, amoniac, benzen, fum, monoxid si dioxid de carbon. Valorile masuratorilor au fost coroborate intr-un indice al calitatii aerului. In functie de valoarea acestuia sunt marcate zonele de pe harta si, mai jos, explicatiile aferente.">masuratorilor</a> 
+  efectuate in acea zona. 
+  Codul culorilor este explicat mai jos; unde sunt asociate mai multe nuante din aceeasi culoare, cu cat este tonul mai inchis, cu atat corespunde unei valori mai mari a indicelui de poluare.</p> 
+</div>   
+<!-- GRAY -->
+<div class="border-shadow panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading1">
+      <h4 class="panel-title">
+        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+          <i><div class="color-box" style="background-color: #838383;"></div></i>&nbsp;&nbsp;Zone gri/incolore
+        </a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+      <div class="panel-body">
+          <p>
+            Zonele gri reprezinta zone in care media valorilor nu este concludenta, cel mai probabil din cauza unor erori de masurare, dar si valori punctuale 
+            <span>
+              <label data-toggle="tooltip" data-placement="right" title="Asemenea valori (i > 2000) pot fi intalnite de pilda la arderea unei paduri">extrem de rare </label>
+            </span>
+          </p>
+          <p>Zonele necolorate sunt zone pentru care nu avem date</p>
+      </div>
+    </div>
+  </div>
+  <!--GREEN-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading2">
+      <h4 class="panel-title">
+        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+          <i><div class="color-box" style="background-color: #00ff00;"></div></i>&nbsp;&nbsp;Calitate buna a aerului, i < 350
+        </a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+      <div class="panel-body">
+        <p>Calitatea aerului este considerata satisfacatoare, nu impacteaza negativ sanatatea oamenilor, iar poluarea prezinta un risc neglijabil.</p>
+      </div>
+    </div>
+  </div>
+  <!--YELLOW-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading3">
+      <h4 class="panel-title">
+        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
+          <i><div class="color-box" style="background-color: #ffff00;"></div></i>&nbsp;&nbsp;Calitate acceptabila, 350 < i < 450
+        </a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+      <div class="panel-body">
+        <p>Calitatea aerului este acceptabila</p>
+        <p>Totusi, poluarea la acest nivel prezinta un oarecare risc pentru un numar foarte restrans de persoane - cei care sunt foarte sensibili la ozon sau praf pot avea probleme respiratorii</p>
+        <p><a href="#" data-html="true" data-toggle="popover" data-trigger="focus" title="<h3>Ce e de facut?</h3>" data-content="
+          <strong>Preventie</strong>
+          <p>Persoanele foarte sensibile ar trebuie sa evite efortul si sa limiteze timpul petrecut afara. In casa, se recomanda instalarea de filtre si purificatoare</p>
+          ">Mai multe...</a></p>
+      </div>
+    </div>
+  </div>
+  <!--ORANGE-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading4">
+      <h4 class="panel-title">
+        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
+          <i>
+            <div class="color-box" style="background-color: #ffcc00;"></div>    
+            <div class="color-box" style="background-color: #ff6600;"></div>
+          </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Risc pers sensibile, 450 < i < 550
+        </a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+      <div class="panel-body">
+        <p>Persoanele sensibile pot avea probleme de sanatate, dar majoritatea oamenilor e improbabil sa fie afectati</p>
+        <p>Sunt considerate persoane sensibile, deci supuse unui grad mai ridicat de risc: cele cu boli de inima sau plamani, copiii, persoanele in varsta si persoanele care practica activitati sportive in exterior</p>
+        <p><a href="#" data-html="true" data-toggle="popover" data-trigger="focus" title="<h3>Ce e de facut?</h3>" data-content="
+          <strong>Preventie</strong>
+          <p>Urmatoarele categorii de persoane ar trebuie sa reduca timpul petrecut afara si activitatile exterioare care implica efort:
+          <ul><li>Persoanele cu boli de inima sau pulmonare (precum astmul)</li><li>Copiii si persoanele in varsta</li><li>Persoanele care practica activitati sportive in exterior</li></ul>
+          In casa, se recomanda instalarea de filtre si purificatoare</p>
+          ">Mai multe...</a></p>
+      </div>
+    </div>
+  </div>
+  <!--RED-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading5">
+      <h4 class="panel-title">
+        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="true" aria-controls="collapse5">
+          <i>
+            <div class="color-box" style="background-color: #ff1a1a;"></div>  
+            <div class="color-box" style="background-color: #b30000;"></div>
+          </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nesanatos, 550 < i < 750
+        </a>
+      </h4>
+    </div>
+    <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+      <div class="panel-body">
+        <p>Riscul problemelor de sanatate se extinde asupra tuturor oamenilor.</p>
+        <p>In particular pentru persoanele din grupurile sensibile exista riscul de probleme de sanatate mai grave.</p>
+        <p><a href="#" data-html="true" data-toggle="popover" data-trigger="focus" title="<h3>Ce e de facut?</h3>" data-content="
+          <strong>Preventie</strong>
+          <p>Urmatoarele categorii de persoane ar trebuie sa evite efortul in exterior si sa limiteze timpul petrecut afara:
+          <ul><li>Persoanele cu boli de inima sau pulmonare (precum astmul)</li><li>Copiii si persoanele in varsta</li><li>Persoanele care practica activitati sportive in exterior</li></ul></p>
+          <p>Toate persoanele ar trebui sa limiteze activitatile exterioare ce implica efort</p>
+          <p></a>In casa, se recomanda instalarea de filtre si purificatoare</p>
+          ">Mai multe...</a></p>
+      </div>
+    </div>
+  </div>
+  <!--MAGENTA-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading6">
+      <h4 class="panel-title">
+        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="true" aria-controls="collapse6">
+          <i>
+            <div class="color-box" style="background-color: #ff66ff;"></div>
+            <div class="color-box" style="background-color: #cc00ff;"></div>
+            <div class="color-box" style="background-color: #8a00e6;"></div>
+          </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Periculos, 750 < i < 2000
+        </a>
+      </h4>
+    </div>
+    <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+      <div class="panel-body">
+        <p>Riscul de probleme de sanatate grave se extinde asupra tuturor oamenilor.</p>
+        <p><a href="#" data-html="true" data-toggle="popover" data-trigger="focus" title="<h3>Ce e de facut?</h3>" data-content="
+          <strong>Preventie</strong>
+          <p>Toate persoanele ar trebui sa evite activitatile exterioare ce implica efort, dar in special urmatoarele categorii de persoane:
+          <ul><li>Persoanele cu boli de inima sau pulmonare (precum astmul)</li><li>Copiii si persoanele in varsta</li><li>Persoanele care practica activitati sportive in exterior</li></ul></p>
+          <p></a>In casa, se recomanda instalarea de filtre si purificatoare</p>
+          ">Mai multe...</a></p>
+      </div>
+    </div>
+  </div>
+</div>

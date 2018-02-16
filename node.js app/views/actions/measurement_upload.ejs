@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/upload.css">
+<div class="container bgc-body">
+    <div class="alert alert-danger" role="alert" id="alertError" hidden>
+        <span>A aparut o eroare la incarcarea datelor</span>
+    </div>
+    <div class="alert alert-success" role="alert" id="alertSuccess" hidden>
+        <span>Datele au fost incarcate. Dupa validare vor fi actualizate pe server</span>
+    </div>
+</div>
+
+
+<div class="container border-shadow" style="margin-top: 10px;">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            <h2>Trimit masuratori</h2>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+            <button class="btn btn-lg upload-btn" type="button">Incarc fisier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+
+  <script src="/scripts/upload.js"></script>
+
+<% include ../partials/footer %>

@@ -1,0 +1,101 @@
+<% include ./partials/header %> 
+
+<div class="container bgc-body">
+    <div class="row">
+        <h1 style="text-align: center">Login</h1>
+        <div style="width: 20%; margin: 25px auto;">
+            <form id="form" name="form" action="/login" method="POST">
+                <div class="form-group">
+                    <input class="form-control border-shadow" type="text" name="username" id="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control border-shadow" type="password" name="password" id="password" placeholder="parola">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block border-shadow">Login!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(document).ready(function(){
+        var $submitBtn = $("#form input[type='submit']");
+        var $username = $("#username");
+        var $passwordBox = $("#password");
+        var $errorMsg =  $('<span id="error_msg" style="color: red;"> Parola nu e completata!</span>');
+        var $errorUsr =  $('<span id="error_usr" style="color: red;"> Nu ati introdus un username!</span>');
+        
+        // This is incase the user hits refresh - some browsers will maintain the disabled state of the button.
+        $submitBtn.attr("disabled", "disabled");
+
+        function checkFieldsFilled(){
+            if($username.val().trim() == ""){
+                $errorUsr.insertAfter($username);
+            } else {
+                var $errorCont = $("#error_usr");
+                if($errorCont.length > 0){
+                    $errorCont.remove();
+                }
+            }
+            if($passwordBox.val().trim() == ""){
+                $errorMsg.insertAfter($passwordBox);
+            } else {
+                var $errorCont = $("#error_msg");
+                if($errorCont.length > 0){
+                    $errorCont.remove();
+                }
+            }
+            if($username.val().trim() == "" || $passwordBox.val().trim() == ""){
+                $submitBtn.attr("disabled", "disabled");
+            } else {
+                $submitBtn.removeAttr("disabled");
+            }
+        }
+
+        $("#password")
+            .on("blur", function(){      // check when the element looses focus (clicks somewhere else)                  
+                if($passwordBox.val().trim() == ""){
+                    $errorMsg.insertAfter($passwordBox);
+                } else {
+                    var $errorCont = $("#error_msg");
+                    if($errorCont.length > 0){
+                        $errorCont.remove();
+                    }
+                }
+                if($username.val().trim() == "" || $passwordBox.val().trim() == ""){
+                    $submitBtn.attr("disabled", "disabled");
+                } else {
+                    $submitBtn.removeAttr("disabled");
+                }
+            })
+        
+        $("#username")
+            .on("blur", function(){      // check when the element looses focus (clicks somewhere else)
+                if($username.val().trim() == ""){
+                    $errorUsr.insertAfter($username);
+                } else {
+                    var $errorCont = $("#error_usr");
+                    if($errorCont.length > 0){
+                        $errorCont.remove();
+                    }
+                }
+                if($username.val().trim() == "" || $passwordBox.val().trim() == ""){
+                    $submitBtn.attr("disabled", "disabled");
+                } else {
+                    $submitBtn.removeAttr("disabled");
+                }
+            })
+            
+        $("#submit")
+            .on("mouseover", function(){
+                checkFieldsFilled();
+            })
+
+    });
+    
+</script>
+
+<% include ./partials/footer %> 

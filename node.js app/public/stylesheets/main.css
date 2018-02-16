@@ -1,0 +1,190 @@
+body {
+    padding-bottom: 0px;
+    background-color: #f8f8f8;
+}
+
+.modal-content {
+    background-color: #f8f8f8;
+}
+
+/*
+.modal {
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+*/
+
+.jumbotron {
+    background-color: #d1d1d1;
+}
+
+.container {
+    background-color: #f4f4f4;
+}
+
+.bgc-body {
+    background-color: #f8f8f8;
+}
+
+.border-shadow {
+    border: solid 1px #CCC;
+    -moz-box-shadow: 1px 1px 5px #999;
+    -webkit-box-shadow: 1px 1px 5px #999;
+        box-shadow: 1px 1px 5px #999;
+}
+
+.alert {
+     margin-top: 2px;
+}
+
+.navbar-bottom,
+.navbar-fixed-bottom {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.navbar-top {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*.navbar-inverse { background-color: #222222}*/
+/*.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { background-color: #FF570F}*/
+/*.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { background-color: #080808}*/
+/*.navbar-inverse { background-image: none; }*/
+/*.navbar-inverse { border-color: #080808}*/
+/*.navbar-inverse .navbar-brand { color: #999999}*/
+/*.navbar-inverse .navbar-brand:hover { color: #FFFFFF}*/
+/*.navbar-inverse .navbar-nav>li>a { color: #999999}*/
+/*.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { color: #FFFFFF}*/
+/*.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { color: #FFFFFF}*/
+/*.navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus { color: #FFFFFF}*/
+.dropdown-menu { 
+    background-color: #FFFFFF;
+    color: #111111;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-color: #444444}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-image: none; }
+.dropdown-menu>li>a { 
+    background-color: #222222;
+    color: #AAAAAA;
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { color: #FFFFFF}
+/*.navbar-inverse .navbar-nav>.dropdown> .caret { border-top-color: #999999}*/
+/*.navbar-inverse .navbar-nav>.dropdown>:hover .caret { border-top-color: #FFFFFF}*/
+/*.navbar-inverse .navbar-nav>.dropdown> .caret { border-bottom-color: #999999}*/
+/*.navbar-inverse .navbar-nav>.dropdown>:hover .caret { border-bottom-color: #FFFFFF}*/
+
+@media (min-width: 768px) {
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+}
+
+
+.color-box {
+    width: 30px;
+    height: 14px;
+    display: inline-block;
+    background-color: #ccc;
+    opacity: .4;
+    left: 5px;
+    top: 5px;
+}
+
+.carousel,
+.item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.thumbnail {
+    border: solid 1px #CCC;
+    -moz-box-shadow: 1px 1px 5px #999;
+    -webkit-box-shadow: 1px 1px 5px #999;
+        box-shadow: 1px 1px 5px #999;
+}
+
+blockquote{
+  display:block;
+  background: #fff;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+  
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #666;
+  text-align: justify;
+  
+  /*Borders - (Optional)*/
+  border-left: 15px solid #c76c0c;
+  border-right: 2px solid #c76c0c;
+  
+  /*Box Shadow - (Optional)*/
+  -moz-box-shadow: 2px 2px 15px #ccc;
+  -webkit-box-shadow: 2px 2px 15px #ccc;
+  box-shadow: 2px 2px 15px #ccc;
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+  
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+  
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote a{
+  text-decoration: none;
+  background: #eee;
+  cursor: pointer;
+  padding: 0 3px;
+  color: #c76c0c;
+}
+
+blockquote a:hover{
+ color: #666;
+}
+
+blockquote em{
+  font-style: italic;
+}
+

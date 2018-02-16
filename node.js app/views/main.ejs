@@ -1,0 +1,225 @@
+<% include partials/header %>
+
+<div class="container bgc-body" style="margin-top: 10px">
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <% include main_accordion %>
+        </div>
+        <div class="col-xs-6 col-md-8">
+            <div class="thumbnail">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+    <!--TODO: selecteaza activitate => zona recomandata din zona de harta activa (la cumparare apartament se poate corela cu API de imobiliare)-->
+</div>
+<style>
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #map {
+        height: 70%;
+        width: 100%;
+    }
+</style>
+<script>
+    var COLORS = {
+        GRAY: '#838383',
+        GREEN: '#00ff00',
+        YELLOW: '#ffff00',
+        LIGHT_ORANGE: '#ffcc00',
+        ORANGE: '#ff6600',
+        RED: '#ff1a1a',
+        DARK_RED: '#b30000',
+        LIGHT_PURPLE: '#ff66ff',
+        PURPLE: '#cc00ff',
+        DARK_PURPLE: '#8a00e6'
+    };
+    
+    var map;
+    var mapBoundaries = {};
+    var airqTiles = [];
+    var processingReq = false;
+    
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover(); 
+    });
+    
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: <%=gmap.defaultCenter.lat%>, lng: <%=gmap.defaultCenter.lng%>},
+            zoom: <%=gmap.zoom%>,
+            disableDoubleClickZoom: true
+        });
+        
+        
+        map.addListener('dragend', function() {                  //ask new data from server when boundaries change
+            console.log("dragend");
+            getNewAirQData();
+            // TODO
+        });
+        
+        map.addListener('zoom_changed', function() {              //ask new data from server when boundaries change
+            console.log("zoom_changed");
+            getNewAirQData();
+        });
+        
+        //add pollution data
+        drawTiles();
+    }
+    
+    function drawTiles(){
+        //remove all draw tiles
+        airqTiles.forEach(function(tile){
+            tile.setMap(null);
+        });
+        airqTiles = [];
+        
+        //draw new tiles based on retrieved data
+        <% gmap.zones.forEach(function(gzone){ %>
+            var zoneColor = COLORS.GRAY;
+            <% if(gzone.co2ppm > 2000) { %>
+                zoneColor = COLORS.GRAY;
+            <% } else if(gzone.co2ppm > 1500) { %>
+                zoneColor = COLORS.DARK_PURPLE;
+            <% } else if(gzone.co2ppm > 1000) { %>
+                zoneColor = COLORS.PURPLE;
+            <% } else if(gzone.co2ppm > 750) { %>
+                zoneColor = COLORS.LIGHT_PURPLE;
+            <% } else if (gzone.co2ppm > 600) { %>
+                zoneColor = COLORS.DARK_RED;
+            <% } else if (gzone.co2ppm > 550) { %>
+                zoneColor = COLORS.RED;
+            <% } else if (gzone.co2ppm > 500) { %>
+                zoneColor = COLORS.ORANGE;
+            <% } else if (gzone.co2ppm > 450) { %>
+                zoneColor = COLORS.LIGHT_ORANGE;
+            <% } else if (gzone.co2ppm > 350) { %>
+                zoneColor = COLORS.YELLOW;
+            <% } else if (gzone.co2ppm <= 350) { %>
+                zoneColor = COLORS.GREEN;
+            <% } %>
+            airqTiles.push(new google.maps.Rectangle({
+                strokeColor: zoneColor,
+                strokeOpacity: 0.25,
+                strokeWeight: 2,
+                fillColor: zoneColor,
+                fillOpacity: 0.25,
+                map: map,
+                bounds: {
+                    north: <%= gzone.latMax %>,
+                    south: <%= gzone.latMin %>,
+                    east: <%= gzone.lngMax %>,
+                    west: <%= gzone.lngMin %>
+                }
+            }));
+        <% }); %>
+    }
+    
+    function getNewAirQData(){
+        if(processingReq){
+            return;
+        } else {
+            processingReq = true;
+        }
+        // create a FormData object which will be sent as the data payload in the
+        // AJAX request
+        var formData = new FormData();
+        
+        mapBoundaries = {
+            latMin: map.getBounds().getSouthWest().lat(),
+            latMax: map.getBounds().getNorthEast().lat(),
+            lngMin: map.getBounds().getSouthWest().lng(),
+            lngMax: map.getBounds().getNorthEast().lng()
+        };
+    
+        // add the new boundaries to formData object for the data payload
+        formData = {
+            'mapBoundaries': mapBoundaries
+        };
+        
+        console.log(formData);
+    
+        $.ajax({
+          url        : '/map',
+          type       : 'POST',
+          data       : formData,
+          dataType   : 'json', // what type of data do we expect back from the server
+          encode     : true,
+          success: function(data){
+              console.log('new boundaries sent!\n');
+              //console.log(data);
+          }
+        })
+            .done(function(data) {    // using the done promise callback
+
+                console.log("response data:");
+                console.log(data); 
+                redrawTiles(data.zones);
+                processingReq = false;
+
+                // TODO handle errors and validation messages
+            })
+            .fail(function(data) {    // using the fail promise callback
+                processingReq = false;
+                
+                // show any errors
+                console.log(data);
+            });
+    }
+    
+    function redrawTiles(zones){
+        //remove all draw tiles
+        airqTiles.forEach(function(tile){
+            tile.setMap(null);
+        });
+        airqTiles = [];
+        
+        //draw new tiles based on retrieved data
+        zones.forEach(function(gzone){
+            var zoneColor = COLORS.GRAY;
+            if(gzone.co2ppm > 2000) { 
+                zoneColor = COLORS.GRAY;
+            } else if(gzone.co2ppm > 1500) { 
+                zoneColor = COLORS.DARK_PURPLE;
+            } else if(gzone.co2ppm > 1000) { 
+                zoneColor = COLORS.PURPLE;
+            } else if(gzone.co2ppm > 750) { 
+                zoneColor = COLORS.LIGHT_PURPLE;
+            } else if(gzone.co2ppm > 600) { 
+                zoneColor = COLORS.DARK_RED;
+            } else if (gzone.co2ppm > 550) { 
+                zoneColor = COLORS.RED;
+            } else if (gzone.co2ppm > 500) { 
+                zoneColor = COLORS.ORANGE;
+            } else if (gzone.co2ppm > 450) { 
+                zoneColor = COLORS.LIGHT_ORANGE;
+            } else if (gzone.co2ppm > 350) { 
+                zoneColor = COLORS.YELLOW;
+            } else if (gzone.co2ppm <= 350) { 
+                zoneColor = COLORS.GREEN;
+            }
+            airqTiles.push(new google.maps.Rectangle({
+                strokeColor: zoneColor,
+                strokeOpacity: 0.25,
+                strokeWeight: 2,
+                fillColor: zoneColor,
+                fillOpacity: 0.25,
+                map: map,
+                bounds: {
+                    north: gzone.latMax,
+                    south: gzone.latMin,
+                    east: gzone.lngMax,
+                    west: gzone.lngMin
+                }
+            }));
+        }); 
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJE8W-U7ncWeESEV6zlLbmLdloXC-ooSU&callback=initMap" async defer></script> <!-- using dedicated key; TODO: restrict in google account access for the domain only -->
+
+<% include partials/footer %>
